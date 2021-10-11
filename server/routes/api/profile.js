@@ -28,6 +28,56 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// @route   POST api/profile
+// @desc    Create or update user profile
+// @access  Private
+
+router.post('/', auth, async (req, res) => {
+  //Error check for required values in ProfileSchema
+  /*    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array() })
+    } */
+
+  const { location, interests, bio } = req.body;
+
+  // Build profile Object
+  const profileFields = {};
+
+  profileFields.user = req.user.id;
+
+  if (location) profileFields.location = location;
+  if (interests) profileFields.interests = interests;
+  if (bio) profileFields.bio = bio;
+
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+
+    if (profile) {
+      //Updates if profile exists
+      profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true }
+      );
+
+      return res.json(profile);
+    }
+
+    // Create new profile
+
+    // Sets inital rating for profile
+    profileFields.rating = { stars: 0, amount: 0 };
+
+    profile = new Profile(profileFields);
+
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 // @route   GET api/profile
 // @desc    Test Route
