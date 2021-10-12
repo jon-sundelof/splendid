@@ -9,7 +9,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 ////////////////////////////////////////
 
-// @route   POST api/posts
+// @route   POST api/ads
 // @desc    Create a ad
 // @access  Private
 
@@ -59,7 +59,7 @@ router.post(
   }
 );
 
-// @route   GET api/posts
+// @route   GET api/ads
 // @desc    Get all ads
 // @access  Private
 
@@ -74,7 +74,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// @route   GET api/posts
+// @route   GET api/ads
 // @desc    Get ad by ID
 // @access  Private
 
@@ -83,7 +83,7 @@ router.get('/:id', auth, async (req, res) => {
     const ad = await Ad.findById(req.params.id);
 
     if (!ad) {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: 'Ad not found' });
     }
 
     res.json(ad);
@@ -91,7 +91,38 @@ router.get('/:id', auth, async (req, res) => {
     console.error(err.message);
 
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.status(404).json({ msg: 'Ad not found' });
+    }
+
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   DELETE api/ad:id
+// @desc    Delete a Ad
+// @access  Private
+
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const ad = await Ad.findById(req.params.id);
+
+    if (!ad) {
+      return res.status(404).json({ msg: 'Ad not found' });
+    }
+
+    // Check user
+    if (ad.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await ad.remove();
+
+    res.json({ msg: 'Ad removed' });
+  } catch (err) {
+    console.error(err.message);
+
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Ad not found' });
     }
 
     res.status(500).send('Server Error');
