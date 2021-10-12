@@ -13,7 +13,7 @@ const User = require('../../models/User');
 // @desc    Create a ad
 // @access  Private
 
-router.get(
+router.post(
   '/',
   [
     auth,
@@ -58,5 +58,20 @@ router.get(
     }
   }
 );
+
+// @route   GET api/posts
+// @desc    Get all ads
+// @access  Private
+
+router.get('/', auth, async (req, res) => {
+  try {
+    const ads = await Ad.find().sort({ date: -1 });
+
+    res.json(ads);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
