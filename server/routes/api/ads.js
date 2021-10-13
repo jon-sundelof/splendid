@@ -183,4 +183,38 @@ router.post(
   }
 );
 
+// @route   DELETE api/ads/review/:id/:review_id
+// @desc    Delete a review on ad
+// @access  Private
+
+router.delete('/review/:id/:review_id', auth, async (req, res) => {
+  try {
+    const ad = await Ad.findById(req.params.id);
+
+    // Target the review in question
+    const review = ad.review.find(
+      (review) => review.id === req.params.review_id
+    );
+
+    // Check if comment exists
+    if (!review) {
+      return res.status(404).json({ msg: 'Review does not exist' });
+    }
+
+    // Check if correct user
+    if (review.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    review.remove();
+
+    await ad.save();
+
+    res.json(ad.review);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
