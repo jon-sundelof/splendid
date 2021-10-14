@@ -1,0 +1,37 @@
+//      VARIABLES
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+/* Font Variables */
+
+$primary_font: 'Poppins', sans-serif;
+$h1_font_size: 48px;
+$h2_font_size: 32px;
+$h3_font_size: 24px;
+$body_font_size: 16px;
+
+/* Heigths */
+
+$bottom_nav_heigth: 6vh;
+
+/*
+************************
+******  Colors  ******
+************************
+*/
+$primary: #f88472;
+$secondary: #0b9882;
+$text_color: #707070;
+$white: #ffffff;
+
+/*
+************************
+******  MIXINS  ******
+************************
+*/
+
+/* center items in container */
+@mixin flex-container-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
