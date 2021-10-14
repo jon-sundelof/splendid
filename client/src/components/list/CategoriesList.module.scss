@@ -1,0 +1,24 @@
+@use '../../styles/variables' as var;
+/* 
+.list_container {
+  border: red 2px solid;
+  max-width: 40em;
+
+  ul {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    list-style: none;
+    li > a {
+      text-decoration: none;
+      color: var.$text_color;
+    }
+    li:hover {
+      transition: background 0.125s ease-in-out;
+      background: rgb(238, 238, 238);
+      cursor: pointer;
+    }
+  }
+} */

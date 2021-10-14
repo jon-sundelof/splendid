@@ -1,10 +1,13 @@
 import React from 'react';
+import '../styles/discover.scss';
+
+import CategoriesList from '../components/list/CategoriesList';
 
 const DiscoverAds = () => {
   return (
-    <div>
-      <h1>PENB</h1>
-    </div>
+    <main className='discover_main_container'>
+      <CategoriesList />
+    </main>
   );
 };
 
