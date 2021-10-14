@@ -1,0 +1,22 @@
+@use '../../styles/variables' as var;
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+
+  height: var.$bottom_nav_heigth;
+  background-color: var.$secondary;
+  ul {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    li > a {
+      text-decoration: none;
+      color: var.$white;
+    }
+  }
+}
