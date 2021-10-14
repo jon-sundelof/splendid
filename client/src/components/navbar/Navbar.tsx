@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styles from './Navbar.module.scss';
+
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className={styles.navbar}>
       <ul>
-        <li>Browse Ads</li>
-        <li>Publish Ad</li>
-        <li>Profile</li>
+        <li>
+          <Link to='/'>Discover</Link>
+        </li>
+        <li>
+          <Link to='/publish'>Publish Ad</Link>
+        </li>
+        <li>
+          <Link to='/profile'>Profile</Link>
+        </li>
       </ul>
     </nav>
   );
