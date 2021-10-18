@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 /*  layout components */
 import Navbar from './components/navbar/Navbar';
+import Header from './components/header/Header';
 /***************************************/
 
 /* pages */
@@ -69,6 +70,7 @@ function App() {
     <>
       {/* <ThemeProvider theme={theme}> */}
       <Router>
+        <Header />
         <Navbar />
         <main>
           <Switch>
