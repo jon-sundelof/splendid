@@ -10,6 +10,7 @@ import DirectionsIcon from '@material-ui/icons/LocationOn';
 const SearchBar = () => {
   return (
     <Paper
+      style={{ maxWidth: '350px' }}
       component='form'
       sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
     >
