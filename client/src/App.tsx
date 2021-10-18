@@ -80,7 +80,7 @@ function App() {
           <Navbar />
           <main>
             <Switch>
-              <Route exact path='/login' component={Signin} />
+              <Route exact path='/signin' component={Signin} />
               <Route exact path='/signup' component={Signup} />
 
               <Route exact path='/' component={DiscoverAds} />
