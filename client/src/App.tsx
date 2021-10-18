@@ -5,7 +5,7 @@ import './styles/global.scss';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 /* auth pages */
-// import Signin from './pages/Signin';
+import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 /**********************************/
 
@@ -74,7 +74,7 @@ function App() {
         <Navbar />
         <main>
           <Switch>
-            {/* <Route exact path='/login' component={Signin} /> */}
+            <Route exact path='/signin' component={Signin} />
             <Route exact path='/signup' component={Signup} />
 
             <Route exact path='/' component={DiscoverAds} />
