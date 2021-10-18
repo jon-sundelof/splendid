@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 
+import PropTypes from 'prop-types';
+
+import Alert from '../components/alert/Alert';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,12 +19,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const Signup = (props: any) => {
+const Signup = ({ setAlert }: any) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('password') !== data.get('passwordTwo')) {
-      props.setAlert('Passwords do not match', 'danger');
+      console.log('HE');
+      setAlert('Passwords do not match', 'error');
     } else {
       console.log('Success');
     }
@@ -114,10 +119,15 @@ const Signup = (props: any) => {
               </Link>
             </Grid>
           </Grid>
+          <Alert />
         </Box>
       </Box>
     </Container>
   );
+};
+
+Signup.prototype = {
+  setAlert: PropTypes.func.isRequired,
 };
 
 export default connect(null, { setAlert })(Signup);
