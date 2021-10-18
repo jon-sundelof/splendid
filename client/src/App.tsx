@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 /* auth pages */
 // import Signin from './pages/Signin';
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 /**********************************/
 
 /*  layout components */
@@ -74,8 +74,8 @@ function App() {
         <Navbar />
         <main>
           <Switch>
-            {/*         <Route exact path='/login' component={Signin} />
-            <Route exact path='/signup' component={Signup} /> */}
+            {/* <Route exact path='/login' component={Signin} /> */}
+            <Route exact path='/signup' component={Signup} />
 
             <Route exact path='/' component={DiscoverAds} />
           </Switch>
