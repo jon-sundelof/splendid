@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-/* import Box from '@mui/material/Box';
 import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu'; */
+import Menu from '@mui/material/Menu';
 
 import styles from './CategoriesList.module.scss';
 
 const CategoriesList = () => {
-  const categoriesList = [
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const open = Boolean(anchorEl);
+  const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number
+  ) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const options = [
     'Fritid och Hobby',
     'Verktyg',
     'Fest och Party',
@@ -20,17 +37,48 @@ const CategoriesList = () => {
   ];
 
   return (
-    <nav className={styles.list_container}>
-      <ul>
-        {categoriesList.map((item, i) => {
-          return (
-            <li key={i}>
-              <Link to={`/category/${item.trim().toLowerCase()}`}>{item}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <div className={styles.list_container}>
+      <List
+        component='nav'
+        aria-label='Device settings'
+        sx={{ bgcolor: 'background.paper' }}
+      >
+        <ListItem
+          button
+          id='lock-button'
+          aria-haspopup='listbox'
+          aria-controls='lock-menu'
+          aria-label='Categories'
+          aria-expanded={open ? 'true' : undefined}
+          onClick={handleClickListItem}
+        >
+          <ListItemText
+            primary='Categories'
+            secondary={options[selectedIndex]}
+          />
+        </ListItem>
+      </List>
+      <Menu
+        id='lock-menu'
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'lock-button',
+          role: 'listbox',
+        }}
+      >
+        {options.map((option, index) => (
+          <MenuItem
+            key={option}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
   );
 };
 
