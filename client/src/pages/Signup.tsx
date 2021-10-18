@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
+/// Redux imports
+import { connect } from 'react-redux';
+import { setAlert } from '../actions/alert';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,12 +15,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const Signup = () => {
+const Signup = (props: any) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('password') !== data.get('passwordTwo')) {
-      console.log('No match');
+      props.setAlert('Passwords do not match', 'danger');
     } else {
       console.log('Success');
     }
@@ -117,4 +120,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default connect(null, { setAlert })(Signup);
