@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import './styles/global.scss';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 /* auth pages */
-import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+// import Signin from './pages/Signin';
+// import Signup from './pages/Signup';
 /**********************************/
 
 /*  layout components */
@@ -39,11 +40,11 @@ import DiscoverAds from './pages/DiscoverAds';
   interface ThemeOptions {
     status: {
       danger: React.CSSProperties['color'];
-    }
+    };
   }
 } */
 
-const theme = createTheme({
+/* const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -61,24 +62,24 @@ const theme = createTheme({
       contrastText: '#fff',
     },
   },
-});
+}); */
 
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Navbar />
-          <main>
-            <Switch>
-              <Route exact path='/login' component={Signin} />
-              <Route exact path='/signup' component={Signup} />
+      {/* <ThemeProvider theme={theme}> */}
+      <Router>
+        <Navbar />
+        <main>
+          <Switch>
+            {/*         <Route exact path='/login' component={Signin} />
+            <Route exact path='/signup' component={Signup} /> */}
 
-              <Route exact path='/' component={DiscoverAds} />
-            </Switch>
-          </main>
-        </Router>
-      </ThemeProvider>
+            <Route exact path='/' component={DiscoverAds} />
+          </Switch>
+        </main>
+      </Router>
+      {/* </ThemeProvider> */}
     </>
   );
 }
