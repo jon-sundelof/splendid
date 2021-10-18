@@ -4,6 +4,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './styles/global.scss';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
+/* Redux  */
+import { Provider } from 'react-redux';
+import store from './store';
+/*******************************/
+
 /* auth pages */
 // import Signin from './pages/Signin';
 import Signup from './pages/Signup';
@@ -68,20 +73,22 @@ import DiscoverAds from './pages/DiscoverAds';
 function App() {
   return (
     <>
-      {/* <ThemeProvider theme={theme}> */}
-      <Router>
-        <Header />
-        <Navbar />
-        <main>
-          <Switch>
-            {/* <Route exact path='/login' component={Signin} /> */}
-            <Route exact path='/signup' component={Signup} />
+      <Provider store={store}>
+        {/* <ThemeProvider theme={theme}> */}
+        <Router>
+          <Header />
+          <Navbar />
+          <main>
+            <Switch>
+              {/* <Route exact path='/login' component={Signin} /> */}
+              <Route exact path='/signup' component={Signup} />
 
-            <Route exact path='/' component={DiscoverAds} />
-          </Switch>
-        </main>
-      </Router>
-      {/* </ThemeProvider> */}
+              <Route exact path='/' component={DiscoverAds} />
+            </Switch>
+          </main>
+        </Router>
+        {/* </ThemeProvider> */}
+      </Provider>
     </>
   );
 }
