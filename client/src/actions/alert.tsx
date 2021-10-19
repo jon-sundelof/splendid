@@ -14,3 +14,11 @@ export const setAlert = (msg: any, alertType: any) => (dispatch: any) => {
 
   setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), 4000);
 };
+
+export const removeAlert = (id: string) => (dispatch: any) => {
+  console.log('asdas');
+  dispatch({
+    type: REMOVE_ALERT,
+    payload: id,
+  });
+};

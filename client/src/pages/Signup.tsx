@@ -24,7 +24,6 @@ const Signup = ({ setAlert }: any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     if (data.get('password') !== data.get('passwordTwo')) {
-      console.log('HE');
       setAlert('Passwords do not match', 'error');
     } else {
       console.log('Success');
