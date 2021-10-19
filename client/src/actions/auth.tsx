@@ -12,12 +12,14 @@ export const register =
       },
     };
 
-    const body: string = JSON.stringify({
+    const body: any = JSON.stringify({
       firstName,
       lastName,
       email,
       password,
     });
+
+    console.log(body);
 
     try {
       const res = await axios.post('/api/users', body, config);
