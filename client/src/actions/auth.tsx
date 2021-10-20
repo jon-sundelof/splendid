@@ -11,6 +11,7 @@ import {
 
 // Load User
 export const loadUser = () => async (dispatch: Dispatch) => {
+  console.log('hey');
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }

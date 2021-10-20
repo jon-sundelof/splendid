@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './styles/global.scss';
@@ -8,6 +8,11 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import store from './store';
 /*******************************/
+
+/* AUTH USER */
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
+/****************/
 
 /* auth pages */
 import Signin from './pages/Signin';
@@ -70,7 +75,15 @@ import DiscoverAds from './pages/DiscoverAds';
   },
 }); */
 
+/* if (localStorage.token) {
+  setAuthToken(localStorage.token);
+} */
+
 function App() {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <>
       <Provider store={store}>
