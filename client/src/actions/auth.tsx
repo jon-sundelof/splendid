@@ -7,7 +7,7 @@ export const register =
   ({ firstName, lastName, email, password }: any) =>
   async (dispatch: any) => {
     const config: any = {
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
     };
