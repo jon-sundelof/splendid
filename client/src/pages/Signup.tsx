@@ -33,7 +33,6 @@ const Signup = ({ setAlert, register }: any) => {
     if (data.get('password') !== data.get('passwordTwo')) {
       setAlert('Passwords do not match', 'error');
     } else {
-      console.log(firstName);
       register({ firstName, lastName, email, password });
     }
   };

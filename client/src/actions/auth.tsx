@@ -19,8 +19,6 @@ export const register =
       password,
     });
 
-    console.log(body);
-
     try {
       const res = await axios.post('/api/users', body, config);
 
