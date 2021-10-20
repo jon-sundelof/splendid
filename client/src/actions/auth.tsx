@@ -7,11 +7,12 @@ import {
   REGISTER_FAIL,
   USER_LOADED,
   AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
 } from './types';
 
 // Load User
 export const loadUser = () => async (dispatch: Dispatch) => {
-  console.log('hey');
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
@@ -30,6 +31,36 @@ export const loadUser = () => async (dispatch: Dispatch) => {
   }
 };
 
+// Login User
+export const login =
+  (email: string, password: string) => async (dispatch: any) => {
+    const config: any = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const body: any = JSON.stringify({
+      email,
+      password,
+    });
+
+    try {
+      const res = await axios.post('/api/auth', body, config);
+
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+    } catch (err: any) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error: any) => dispatch(setAlert(error.msg, 'error')));
+      }
+
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    }
+  };
 // Register User
 export const register =
   ({ firstName, lastName, email, password }: any) =>
