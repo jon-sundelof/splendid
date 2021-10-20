@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../actions/auth';
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,15 +15,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const Signin = () => {
+const Signin = ({ login }: any) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (data.get('password') !== data.get('passwordTwo')) {
-      console.log('No match');
-    } else {
-      console.log('Success');
-    }
+    let email = data.get('email');
+    let password = data.get('password');
+    login({ email, password });
   };
 
   return (
@@ -90,4 +91,8 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+Signin.propTypes = {
+  login: PropTypes.func.isRequired,
+};
+
+export default connect(null, { login })(Signin);

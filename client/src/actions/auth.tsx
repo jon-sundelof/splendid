@@ -33,7 +33,8 @@ export const loadUser = () => async (dispatch: Dispatch) => {
 
 // Login User
 export const login =
-  (email: string, password: string) => async (dispatch: any) => {
+  ({ email, password }: any) =>
+  async (dispatch: any) => {
     const config: any = {
       headers: {
         'Content-Type': 'application/json',
@@ -45,10 +46,14 @@ export const login =
       password,
     });
 
+    console.log(body);
+
     try {
       const res = await axios.post('/api/auth', body, config);
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+
+      dispatch(loadUser());
     } catch (err: any) {
       const errors = err.response.data.errors;
 
@@ -82,6 +87,8 @@ export const register =
       const res = await axios.post('/api/users', body, config);
 
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+
+      dispatch(loadUser());
     } catch (err: any) {
       const errors = err.response.data.errors;
 
