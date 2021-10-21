@@ -27,7 +27,7 @@ const Profile = ({ auth: { isAuthenticated, loading, user }, logout }: any) => {
       <CircularProgress />
     </Box>
   ) : (
-    <main className='main_container'>
+    <main className='main_container_profile'>
       <img src={user.avatar} className='avatar_profile' />
       <div>
         <h2>{user.firstName}</h2>
