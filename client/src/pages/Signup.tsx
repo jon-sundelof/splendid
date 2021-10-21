@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router';
 
 /// Redux imports
 import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-const Signup = ({ setAlert, register }: any) => {
+const Signup = ({ setAlert, register, isAuthenticated }: any) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +37,11 @@ const Signup = ({ setAlert, register }: any) => {
       register({ firstName, lastName, email, password });
     }
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -135,6 +141,11 @@ const Signup = ({ setAlert, register }: any) => {
 Signup.prototype = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { setAlert, register })(Signup);
+const mapStateToProps = (state: any) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Signup);

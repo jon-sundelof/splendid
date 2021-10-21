@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router';
 
+/* Redux setup */
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../actions/auth';
+/* ************************************ */
 
+/* Material UI imports */
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,8 +18,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+/* ******************************************** */
 
-const Signin = ({ login }: any) => {
+const Signin = ({ login, isAuthenticated }: any) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,6 +29,10 @@ const Signin = ({ login }: any) => {
     login({ email, password });
   };
 
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
@@ -93,6 +102,11 @@ const Signin = ({ login }: any) => {
 
 Signin.propTypes = {
   login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { login })(Signin);
+const mapStateToProps = (state: any) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Signin);
