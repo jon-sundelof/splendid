@@ -26,6 +26,7 @@ import Header from './components/header/Header';
 
 /* pages */
 import DiscoverAds from './pages/DiscoverAds';
+import Profile from './pages/Profile';
 /***************************************/
 
 /* declare module '@material-ui/core/styles' {
@@ -97,6 +98,7 @@ function App() {
               <Route exact path='/signup' component={Signup} />
 
               <Route exact path='/' component={DiscoverAds} />
+              <Route exact path='/profile' component={Profile} />
             </Switch>
           </main>
         </Router>

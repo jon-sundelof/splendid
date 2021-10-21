@@ -47,8 +47,6 @@ export const login =
       password,
     });
 
-    console.log(body);
-
     try {
       const res = await axios.post('/api/auth', body, config);
 
