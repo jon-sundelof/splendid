@@ -9,6 +9,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from './types';
 
 // Load User
@@ -101,3 +102,9 @@ export const register =
       });
     }
   };
+
+// Logout user / Clear Profile
+
+export const logout = () => (dispatch: Dispatch) => {
+  dispatch({ type: LOGOUT });
+};
