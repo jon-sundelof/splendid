@@ -1,0 +1,98 @@
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <label>1. Pick a category</label>
+        <CategoriesList />
+      </FormControl>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <label>2. Describe your product</label>
+        <TextField id='standard-basic' label='Titel' variant='standard' />
+        <TextField
+          id='outlined-multiline-static'
+          // placeholder='Description'
+          label='Description'
+          multiline
+          rows={4}
+          style={{ marginTop: '1em' }}
+        />
+      </FormControl>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <label>3. Upload image</label>
+        <label htmlFor='icon-button-file'>
+          <Input accept='image/*' id='icon-button-file' type='file' />
+          <IconButton
+            color='primary'
+            aria-label='upload picture'
+            component='span'
+          >
+            <PhotoCamera />
+          </IconButton>
+        </label>
+      </FormControl>
+
+      <label className='section_label'>4. Set prices</label>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <InputLabel htmlFor='outlined-adornment-amount'>Day</InputLabel>
+        <OutlinedInput
+          size='small'
+          id='outlined-adornment-amount'
+          value={values.dayPrice}
+          onChange={handleChange('dayPrice')}
+          startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+          label='Amount'
+          type='number'
+        />
+      </FormControl>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <InputLabel htmlFor='outlined-adornment-amount'>3 Days</InputLabel>
+        <OutlinedInput
+          size='small'
+          id='outlined-adornment-amount'
+          value={values.threeDayPrice}
+          onChange={handleChange('threeDayPrice')}
+          startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+          label='Amount'
+          type='number'
+        />
+      </FormControl>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <InputLabel htmlFor='outlined-adornment-amount'>Week</InputLabel>
+        <OutlinedInput
+          size='small'
+          id='outlined-adornment-amount'
+          value={values.weekPrice}
+          onChange={handleChange('weekPrice')}
+          startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+          label='Amount'
+          type='number'
+        />
+      </FormControl>
+
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <label>5. Alternetives for pickup/delivery</label>
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label='Pickup'
+          />
+          <FormControlLabel
+            control={<Checkbox defaultChecked />}
+            label='Delivery'
+          />
+        </FormGroup>
+      </FormControl>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <label>6. Cancellation policy</label>
+        <TextField id='standard-basic' label='Policy' variant='standard' />
+      </FormControl>
+      <span className='section_label'>7. The value of the product</span>
+      <FormControl fullWidth sx={{ m: 1 }}>
+        <InputLabel htmlFor='outlined-adornment-amount'>Amount</InputLabel>
+        <OutlinedInput
+          size='small'
+          id='outlined-adornment-amount'
+          value={values.productValue}
+          onChange={handleChange('productValue')}
+          startAdornment={<InputAdornment position='start'>$</InputAdornment>}
+          label='Amount'
+          type='number'
+        />
+      </FormControl>
