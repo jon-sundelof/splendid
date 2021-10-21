@@ -27,6 +27,7 @@ import Header from './components/header/Header';
 /* pages */
 import DiscoverAds from './pages/DiscoverAds';
 import Profile from './pages/Profile';
+import PublishAd from './pages/PublishAd';
 /***************************************/
 
 /* declare module '@material-ui/core/styles' {
@@ -91,14 +92,15 @@ function App() {
         {/* <ThemeProvider theme={theme}> */}
         <Router>
           <Header />
-          <Navbar />
-          <main>
+          {/* <Navbar /> */}
+          <main className='app_main_container'>
             <Switch>
               <Route exact path='/signin' component={Signin} />
               <Route exact path='/signup' component={Signup} />
 
               <Route exact path='/' component={DiscoverAds} />
               <Route exact path='/profile' component={Profile} />
+              <Route exact path='/publish' component={PublishAd} />
             </Switch>
           </main>
         </Router>
