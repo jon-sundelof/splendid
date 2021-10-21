@@ -11,17 +11,25 @@ import { logout } from '../actions/auth';
 import Button from '@mui/material/Button';
 /* ************************************ */
 
-const Profile = ({ auth: { isAuthenticated, loading }, logout }: any) => {
+const Profile = ({ auth: { isAuthenticated, loading, user }, logout }: any) => {
   // Redirect if logged in
   if (!isAuthenticated) {
     return <Redirect to='/' />;
   }
   return (
-    <div>
+    <main>
+      <img src={user.avatar} className='avatar_profile' />
+      <div>
+        <h2>{user.firstName}</h2>
+        <h2>{user.lastName}</h2>
+      </div>
+      <label>Email: </label>
+      <span>{user.email}</span>
+
       <Button onClick={logout} variant='contained' color='error'>
         Logout
       </Button>
-    </div>
+    </main>
   );
 };
 
