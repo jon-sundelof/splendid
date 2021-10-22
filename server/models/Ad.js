@@ -40,7 +40,7 @@ const AdSchema = new Schema({
     type: String,
     required: true,
   },
-  value: {
+  productValue: {
     type: String,
     required: true,
   },

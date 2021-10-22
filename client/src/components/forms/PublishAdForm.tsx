@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 
 import CategoriesList from '../list/CategoriesList';
 
@@ -14,11 +15,13 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
+import Button from '@mui/material/Button';
+// import { Button } from '@material-ui/core';
 
 interface State {
   category: string;
   title: string;
-  description: string;
+  desc: string;
   dayPrice: string;
   threeDayPrice: string;
   weekPrice: string;
@@ -26,7 +29,7 @@ interface State {
   pickup: boolean;
   addresses: [string];
   delivery: boolean;
-  cancellation: string;
+  terms: string;
   iAgree: boolean;
 }
 
@@ -35,7 +38,7 @@ const PublishAdForm = () => {
   const [values, setValues] = React.useState<State>({
     category: '',
     title: '',
-    description: '',
+    desc: '',
     dayPrice: '',
     threeDayPrice: '',
     weekPrice: '',
@@ -43,7 +46,7 @@ const PublishAdForm = () => {
     pickup: false,
     addresses: [''],
     delivery: false,
-    cancellation: '',
+    terms: '',
     iAgree: false,
   });
 
@@ -62,8 +65,6 @@ const PublishAdForm = () => {
       ...values,
       [event.target.name]: event.target.checked,
     });
-
-    console.log(values);
   };
 
   return (
@@ -90,8 +91,8 @@ const PublishAdForm = () => {
           <TextField
             id='outlined-multiline-static'
             label='Description'
-            value={values.description}
-            onChange={handleChange('description')}
+            value={values.desc}
+            onChange={handleChange('desc')}
             multiline
             rows={4}
             fullWidth
@@ -211,9 +212,9 @@ const PublishAdForm = () => {
           <FormControl fullWidth sx={{ m: 1 }}>
             <label>7. Cancellation policy</label>
             <TextField
-              id='cancellation'
-              value={values.cancellation}
-              onChange={handleChange('cancellation')}
+              id='terms'
+              value={values.terms}
+              onChange={handleChange('terms')}
               label='Policy'
               variant='standard'
             />
@@ -245,6 +246,7 @@ const PublishAdForm = () => {
             label='I agree to the terms of service'
           />
         </Grid>
+        <Button onClick={submitAd}>PUBLISH</Button>
       </Grid>
     </React.Fragment>
   );

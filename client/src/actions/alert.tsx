@@ -16,7 +16,6 @@ export const setAlert = (msg: any, alertType: any) => (dispatch: any) => {
 };
 
 export const removeAlert = (id: string) => (dispatch: any) => {
-  console.log('asdas');
   dispatch({
     type: REMOVE_ALERT,
     payload: id,

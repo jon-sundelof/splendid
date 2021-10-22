@@ -23,7 +23,7 @@ router.post(
       check('desc', 'Description is required').not().isEmpty(),
       check('price', 'Price is required').not().isEmpty(),
       check('terms', 'Terms are required').not().isEmpty(),
-      check('value', 'Value is required').not().isEmpty(),
+      check('productValue', 'Value is required').not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -45,7 +45,7 @@ router.post(
         delivery: req.body.delivery,
         price: req.body.price,
         terms: req.body.terms,
-        value: req.body.value,
+        productValue: req.body.productValue,
         timeperiod: req.body.timeperiod,
         name: user.name,
         avatar: user.avatar,
