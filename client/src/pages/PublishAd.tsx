@@ -6,6 +6,7 @@ import '../styles/publishad.scss';
 
 /* Components import */
 import PublishAdForm from '../components/forms/PublishAdForm';
+import ReviewAd from '../components/forms/ReviewAd';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -16,13 +17,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 
 import Typography from '@mui/material/Typography';
-
-interface State {
-  dayPrice: string;
-  threeDayPrice: string;
-  weekPrice: string;
-  productValue: string;
-}
 
 const PublishAd = () => {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -41,10 +35,8 @@ const PublishAd = () => {
     switch (step) {
       case 0:
         return <PublishAdForm />;
-      /*      case 1:
-        return <PaymentForm />;
-      case 2:
-        return <Review />; */
+      case 1:
+        return <ReviewAd />;
       default:
         throw new Error('Unknown step');
     }
@@ -52,7 +44,7 @@ const PublishAd = () => {
 
   return (
     <main className='main_container_publish'>
-      <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
+      <Container component='main' maxWidth='md' sx={{ mb: 4 }}>
         <Paper
           variant='outlined'
           sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
