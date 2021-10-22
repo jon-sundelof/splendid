@@ -8,10 +8,19 @@ import Menu from '@mui/material/Menu';
 
 import styles from './CategoriesList.module.scss';
 
-const CategoriesList = () => {
+const CategoriesList = ({ setCategory, values }: any) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   const open = Boolean(anchorEl);
+  const options = [
+    'Default',
+    'Fritid och Hobby',
+    'Verktyg',
+    'Fest och Party',
+    'Fordon',
+    'Elektronik',
+  ];
+
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -22,19 +31,12 @@ const CategoriesList = () => {
   ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
+    setCategory({ ...values, category: options[index] });
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const options = [
-    'Fritid och Hobby',
-    'Verktyg',
-    'Fest och Party',
-    'Fordon',
-    'Elektronik',
-  ];
 
   return (
     <div className={styles.list_container}>
