@@ -1,0 +1,28 @@
+@use './variables' as var;
+.ad_article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20em;
+  height: 8em;
+  box-shadow: var.$card_box_shadow;
+  padding: 1em;
+  margin-bottom: 1em;
+  color: var.$text_color;
+
+  .ad_top_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ads_prices {
+    // position: absolute;
+    // bottom: 0.5em;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  h2 {
+  }
+}
