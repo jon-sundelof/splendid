@@ -246,7 +246,7 @@ const PublishAdForm = () => {
             label='I agree to the terms of service'
           />
         </Grid>
-        <Button onClick={submitAd}>PUBLISH</Button>
+        <Button>PUBLISH</Button>
       </Grid>
     </React.Fragment>
   );
