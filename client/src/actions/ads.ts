@@ -1,3 +1,19 @@
+import axios from 'axios';
+import { setAlert } from './alert';
+import { GET_ADS, AD_ERROR } from './types';
+
+export const getAds = () => async (dispatch: any) => {
+  console.log('asd');
+  try {
+    const res = await axios.get('/api/ads');
+
+    dispatch({
+      type: GET_ADS,
+      payload: res.data,
+    });
+  } catch (err) {}
+};
+
 /* const submitAd = async () => {
   const {
     category,
