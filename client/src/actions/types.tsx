@@ -12,4 +12,5 @@ export const LOGIN_FAIL = 'LOGIN_FAIL;';
 export const LOGOUT = 'LOGOUT';
 
 export const GET_ADS = 'GET_ADS';
+export const GET_TARGETED_AD = 'GET_TARGETED_AD';
 export const AD_ERROR = 'AD_ERROR';
