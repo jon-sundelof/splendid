@@ -66,7 +66,7 @@ router.post(
 // @desc    Get all ads
 // @access  Private
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const ads = await Ad.find().sort({ date: -1 });
 
@@ -81,25 +81,28 @@ router.get('/', auth, async (req, res) => {
 // @desc    Get ad by ID
 // @access  Private
 
-router.get('/:id', auth, async (req, res) => {
-  try {
-    const ad = await Ad.findById(req.params.id);
+router.get(
+  '/:id',
+  /* auth, */ async (req, res) => {
+    try {
+      const ad = await Ad.findById(req.params.id);
 
-    if (!ad) {
-      return res.status(404).json({ msg: 'Ad not found' });
+      if (!ad) {
+        return res.status(404).json({ msg: 'Ad not found' });
+      }
+
+      res.json(ad);
+    } catch (err) {
+      console.error(err.message);
+
+      if (err.kind === 'ObjectId') {
+        return res.status(404).json({ msg: 'Ad not found' });
+      }
+
+      res.status(500).send('Server Error');
     }
-
-    res.json(ad);
-  } catch (err) {
-    console.error(err.message);
-
-    if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Ad not found' });
-    }
-
-    res.status(500).send('Server Error');
   }
-});
+);
 
 // @route   DELETE api/ad:id
 // @desc    Delete a Ad
