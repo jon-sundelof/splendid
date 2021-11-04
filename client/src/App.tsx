@@ -28,6 +28,7 @@ import Header from './components/header/Header';
 import DiscoverAds from './pages/DiscoverAds';
 import Profile from './pages/Profile';
 import PublishAd from './pages/PublishAd';
+import Ad from './pages/Ad';
 /***************************************/
 
 /* declare module '@material-ui/core/styles' {
@@ -101,6 +102,7 @@ function App() {
               <Route exact path='/' component={DiscoverAds} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/publish' component={PublishAd} />
+              <Route exact path='/ad/:id' component={Ad} />
             </Switch>
           </main>
         </Router>
