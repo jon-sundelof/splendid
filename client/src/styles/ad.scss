@@ -1,4 +1,11 @@
 @use './variables' as var;
+
+.single_ad_page_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .ad_article {
   position: relative;
   display: flex;
