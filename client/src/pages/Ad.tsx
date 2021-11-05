@@ -9,9 +9,9 @@ const Ad = () => {
     console.log(param.id);
   }, []);
   return (
-    <div>
+    <main className='single_ad_page_container'>
       <TargetedAd id={param.id} />
-    </div>
+    </main>
   );
 };
 
