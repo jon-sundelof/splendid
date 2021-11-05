@@ -1,4 +1,4 @@
-import { GET_TARGETED_AD } from '../actions/types';
+import { GET_TARGETED_AD, SAVE_AD_DATA } from '../actions/types';
 
 const initialState = {
   ad: null,
@@ -11,6 +11,7 @@ export default function (state = initialState, action: any) {
 
   switch (type) {
     case GET_TARGETED_AD:
+    case SAVE_AD_DATA:
       return { ...state, ad: payload, loading: false };
     default:
       return state;
