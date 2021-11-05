@@ -1,0 +1,20 @@
+@use '../../styles/variables' as var;
+
+.sp_ad_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 50em;
+  height: 20em;
+  box-shadow: var.$card_box_shadow;
+  padding: 1em;
+  margin: 1em 0;
+  color: var.$text_color;
+
+  .ads_prices {
+    display: flex;
+    flex-direction: row;
+  }
+}
