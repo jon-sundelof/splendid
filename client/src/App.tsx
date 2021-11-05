@@ -93,7 +93,7 @@ function App() {
         {/* <ThemeProvider theme={theme}> */}
         <Router>
           <Header />
-          {/* <Navbar /> */}
+          <Navbar />
           <main className='app_main_container'>
             <Switch>
               <Route exact path='/signin' component={Signin} />
