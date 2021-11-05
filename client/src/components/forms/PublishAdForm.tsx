@@ -1,10 +1,12 @@
 import * as React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { saveAdData } from '../../actions/ads';
 
 import CategoriesList from '../list/CategoriesList';
 
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -33,7 +35,7 @@ interface State {
   iAgree: boolean;
 }
 
-const PublishAdForm = () => {
+const PublishAdForm = ({ saveAdData, handleNext }: any) => {
   // const [category, setCategory] = React.useState('');
   const [values, setValues] = React.useState<State>({
     category: '',
@@ -50,6 +52,34 @@ const PublishAdForm = () => {
     iAgree: false,
   });
 
+  const handleNextAndSaveData = () => {
+    const {
+      category,
+      title,
+      desc,
+      dayPrice,
+      threeDayPrice,
+      weekPrice,
+      productValue,
+      pickup,
+      addresses,
+      delivery,
+      terms,
+    } = values;
+    const valuesToSend: any = {
+      category,
+      title,
+      desc,
+      price: [dayPrice, threeDayPrice, weekPrice],
+      productValue,
+      pickup,
+      addresses,
+      delivery,
+      terms,
+    };
+    saveAdData(valuesToSend);
+    handleNext();
+  };
   const Input = styled('input')({
     display: 'none',
   });
@@ -153,7 +183,21 @@ const PublishAdForm = () => {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12}>
+          <section>
+            <h2 style={{ color: 'green' }}>Delivery</h2>
+            <p>
+              Sp<span style={{ color: 'green' }}>lend</span>id offers users an
+              environmentally friendly delivery option to make the loan more
+              accessible to those who do not have the right conditions.
+              <br />
+              <br />
+              See how we work by following the{' '}
+              <span style={{ color: 'green' }}>link</span>
+            </p>
+          </section>
+        </Grid>
+        <Grid item xs={12}>
           <label>6. Alternatives for pickup</label>
           <FormGroup>
             <FormControlLabel
@@ -178,24 +222,10 @@ const PublishAdForm = () => {
             />
           </FormGroup>
         </Grid>
-        <Grid item xs={8}>
-          <section>
-            <h2 style={{ color: 'green' }}>Delivery</h2>
-            <p>
-              Sp<span style={{ color: 'green' }}>lend</span>id offers users an
-              environmentally friendly delivery option to make the loan more
-              accessible to those who do not have the right conditions.
-              <br />
-              <br />
-              See how we work by following the{' '}
-              <span style={{ color: 'green' }}>link</span>
-            </p>
-          </section>
-        </Grid>
         <Grid item xs={6}>
           <TextField id='standard-basic' label='Address +' variant='standard' />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <label>2. Upload image</label>
           <label htmlFor='icon-button-file'>
             <Input accept='image/*' id='icon-button-file' type='file' />
@@ -208,7 +238,7 @@ const PublishAdForm = () => {
             </IconButton>
           </label>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormControl fullWidth sx={{ m: 1 }}>
             <label>7. Cancellation policy</label>
             <TextField
@@ -220,7 +250,7 @@ const PublishAdForm = () => {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <FormControl fullWidth sx={{ m: 1 }}>
             <label>8. Product value</label>
             <TextField
@@ -246,10 +276,23 @@ const PublishAdForm = () => {
             label='I agree to the terms of service'
           />
         </Grid>
-        <Button>PUBLISH</Button>
+        <Grid item xs={12}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Button
+              variant='contained'
+              /*       onClick={() => {
+                handleNext();
+                handleSaveData();
+              }} */
+              onClick={handleNextAndSaveData}
+            >
+              NEXT
+            </Button>
+          </Box>
+        </Grid>
       </Grid>
     </React.Fragment>
   );
 };
 
-export default PublishAdForm;
+export default connect(null, { saveAdData })(PublishAdForm);
