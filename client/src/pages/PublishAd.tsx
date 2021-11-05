@@ -29,14 +29,21 @@ const PublishAd = () => {
     setActiveStep(activeStep - 1);
   };
 
-  const steps = ['Product info', 'Payment details', 'Review your ad'];
+  const steps = ['Product info', 'Review your ad'];
 
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <PublishAdForm />;
+        return <PublishAdForm handleNext={handleNext} />;
       case 1:
-        return <ReviewAd />;
+        return (
+          <ReviewAd
+            handleBack={handleBack}
+            handleNext={handleNext}
+            // activeStep={activeStep}
+            steps={steps}
+          />
+        );
       default:
         throw new Error('Unknown step');
     }
@@ -62,20 +69,16 @@ const PublishAd = () => {
           <React.Fragment>
             <React.Fragment>
               {getStepContent(activeStep)}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              {/*       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                     Back
                   </Button>
                 )}
-                <Button
-                  variant='contained'
-                  onClick={handleNext}
-                  sx={{ mt: 3, ml: 1 }}
-                >
+                <Button onClick={handleNext} sx={{ mt: 3, ml: 1 }}>
                   {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                 </Button>
-              </Box>
+              </Box> */}
             </React.Fragment>
           </React.Fragment>
         </Paper>
