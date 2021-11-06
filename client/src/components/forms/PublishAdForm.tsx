@@ -27,6 +27,7 @@ interface State {
   dayPrice: string;
   threeDayPrice: string;
   weekPrice: string;
+  pic: string;
   productValue: string;
   pickup: boolean;
   addresses: [string];
@@ -44,6 +45,7 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
     dayPrice: '',
     threeDayPrice: '',
     weekPrice: '',
+    pic: '',
     productValue: '',
     pickup: false,
     addresses: [''],
@@ -83,6 +85,30 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
   const Input = styled('input')({
     display: 'none',
   });
+
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let file = e.target.files![0];
+    if (file.size > 55000) {
+      alert('Bilden är för stor');
+      setValues((prev) => ({ ...prev, picDone: false, pic: '' }));
+      return;
+    } else {
+      setValues((prev) => ({ ...prev, picDone: true }));
+      const reader = new FileReader();
+      setValues((prev: any) => ({ ...prev, pic: file }));
+      reader.addEventListener(
+        'load',
+        () => {
+          setValues((prev: any) => ({ ...prev, pic: reader.result }));
+        },
+        false
+      );
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  };
 
   const handleChange =
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,7 +254,12 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
         <Grid item xs={12}>
           <label>2. Upload image</label>
           <label htmlFor='icon-button-file'>
-            <Input accept='image/*' id='icon-button-file' type='file' />
+            <Input
+              accept='image/*'
+              id='icon-button-file'
+              type='file'
+              onChange={(e) => onFileChange(e)}
+            />
             <IconButton
               color='primary'
               aria-label='upload picture'
@@ -237,6 +268,7 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
               <PhotoCamera />
             </IconButton>
           </label>
+          <img src={values.pic} />
         </Grid>
         <Grid item xs={12} md={6}>
           <FormControl fullWidth sx={{ m: 1 }}>
