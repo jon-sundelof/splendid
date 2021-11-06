@@ -39,6 +39,7 @@ const Ads = ({ getAds, ads: { ads, loading } }: any): any => {
               <p>3 days: {item.price[0]} $</p>
               <p>7 days: {item.price[2]} $</p>
             </div>
+            <img src={item.avatar} />
           </article>
         );
       })}
