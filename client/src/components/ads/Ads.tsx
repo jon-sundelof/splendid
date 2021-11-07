@@ -1,25 +1,38 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAds } from '../../actions/ads';
 
 import '../../styles/ad.scss';
+import Button from '@mui/material/Button';
 
-const Ads = ({ getAds, ads: { ads, loading } }: any): any => {
+const Ads = ({ categoryValue, getAds, ads: { ads, loading } }: any): any => {
   const history = useHistory();
 
   useEffect(() => {
     getAds();
   }, [getAds]);
 
+  const filterAdsArray = () => {
+    if (categoryValue == 'All items') {
+      return ads;
+    } else {
+      return ads.filter((item: any) => item.category === categoryValue);
+    }
+  };
+
   const onClickAd = (e: any) => {
     history.push(`/ad/${e.target.closest('article').id}`);
-    console.log(e.target);
   };
+
+  const handleOnRentClick = (e: any) => {
+    e.stopPropagation();
+    history.push(`/rent/${e.target.closest('article').id}`);
+  };
+
   return (
     <>
-      {ads.map((item: any, i: number) => {
+      {filterAdsArray().map((item: any, i: number) => {
         return (
           <article
             id={item._id}
@@ -27,29 +40,27 @@ const Ads = ({ getAds, ads: { ads, loading } }: any): any => {
             key={i}
             onClick={(e) => onClickAd(e)}
           >
+            <img className='ad_img' src={item.pic} />
             <div className='ad_top_row'>
-              <h2>{item.title}</h2>
+              <div>
+                <h2>{item.title}</h2>
+                <p>{item.price[0]} $ / day</p>
+              </div>
               <span>{item.category}</span>
             </div>
-
-            <p>{item.desc}</p>
-            {/* <span>Value: {item.value} $</span> */}
-            <div className='ads_prices'>
-              <p>1 day: {item.price[0]} $</p>
-              <p>3 days: {item.price[0]} $</p>
-              <p>7 days: {item.price[2]} $</p>
-            </div>
-            <img src={item.avatar} />
+            <p className='desc_container'>{item.desc}</p>
+            <Button
+              className='rent_btn'
+              variant='contained'
+              onClick={handleOnRentClick}
+            >
+              RENT ME
+            </Button>
           </article>
         );
       })}
     </>
   );
-};
-
-Ads.propTypes = {
-  getAds: PropTypes.func.isRequired,
-  ads: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state: any) => ({
