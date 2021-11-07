@@ -8,13 +8,21 @@ const Navbar = () => {
     <nav className={styles.navbar}>
       <ul>
         <li>
-          <Link to='/'>Discover</Link>
+          <Link to='/'>
+            <i className='fas fa-search'></i>
+            Discover
+          </Link>
         </li>
         <li>
-          <Link to='/publish'>Publish Ad</Link>
+          <Link to='/publish'>
+            <i className='fas fa-plus'></i>
+            Publish Ad
+          </Link>
         </li>
         <li>
-          <Link to='/profile'>Profile</Link>
+          <Link to='/profile'>
+            <i className='fas fa-user'></i>Profile
+          </Link>
         </li>
       </ul>
     </nav>
