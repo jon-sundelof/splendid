@@ -7,8 +7,8 @@ import SearchBar from '../searchbar/SearchBar';
 const Header = () => {
   return (
     <header>
-      <h1>SPLENDID</h1>
-      <SearchBar />
+      <h2>SPLENDID</h2>
+      {/* <SearchBar /> */}
     </header>
   );
 };
