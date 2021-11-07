@@ -4,17 +4,52 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   max-width: 50em;
-  height: 20em;
-  box-shadow: var.$card_box_shadow;
-  padding: 1em;
-  margin: 1em 0;
   color: var.$text_color;
 
-  .ads_prices {
+  .ad_top_row {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      border-radius: 50%;
+      width: 3em;
+    }
+  }
+  .category {
+    align-self: end;
+  }
+
+  .text_content_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+    width: 80%;
+    button {
+      background-color: var.$secondary;
+    }
+  }
+  .ad_prices {
+    display: flex;
+    flex-direction: column;
+    max-width: 8em;
+    .prices_header {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    div {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .img_targeted_ad {
+    width: 100%;
+    /*     max-width: 950px;
+    height: auto;
+    max-height: 450px; */
   }
 }
