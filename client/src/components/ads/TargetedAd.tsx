@@ -5,6 +5,7 @@ import { getTargetedAd } from '../../actions/ads';
 import targetedAd from '../../reducers/targetedAd';
 
 import styles from './TargetedAd.module.scss';
+import Button from '@mui/material/Button';
 
 const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
   useEffect(() => {
@@ -16,18 +17,37 @@ const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
       {loading ? null : (
         <>
           <article className={styles.sp_ad_container}>
-            <div className='ad_top_row'>
-              <h2>{ad.title}</h2>
-              <span>{ad.category}</span>
-            </div>
+            <img className={styles.img_targeted_ad} src={ad.pic} />
+            <section className={styles.text_content_container}>
+              <div className={styles.ad_top_row}>
+                <div>
+                  <h2>{ad.title}</h2>
+                  <span>{ad.price[0]} $/day</span>
+                </div>
+                <img src={ad.avatar} />
+              </div>
 
-            <p>{ad.desc}</p>
+              <p className={ad.desc_container}>{ad.desc}</p>
+              <hr />
+              <span className={styles.category}>{ad.category}</span>
 
-            <div className='ads_prices'>
-              <p>1 day: {ad.price[0]} $</p>
-              <p>3 days: {ad.price[0]} $</p>
-              <p>7 days: {ad.price[2]} $</p>
-            </div>
+              <div className={styles.ad_prices}>
+                <span className={styles.prices_header}>Prices</span>
+                <div>
+                  <span>1 day</span>
+                  <span>{ad.price[0]} $</span>
+                </div>
+                <div>
+                  <span>3 day</span>
+                  <span>{ad.price[1]} $</span>
+                </div>
+                <div>
+                  <span>7 day</span>
+                  <span>{ad.price[2]} $</span>
+                </div>
+              </div>
+              <Button variant='contained'>Rent Me</Button>
+            </section>
           </article>
         </>
       )}
