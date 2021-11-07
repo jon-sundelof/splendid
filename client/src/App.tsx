@@ -29,9 +29,10 @@ import DiscoverAds from './pages/DiscoverAds';
 import Profile from './pages/Profile';
 import PublishAd from './pages/PublishAd';
 import Ad from './pages/Ad';
+import RentAdPage from './pages/RentAdPage';
 /***************************************/
-
-/* declare module '@material-ui/core/styles' {
+/* 
+declare module '@material-ui/core/styles' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -56,9 +57,9 @@ import Ad from './pages/Ad';
       danger: React.CSSProperties['color'];
     };
   }
-} */
+}
 
-/* const theme = createTheme({
+const theme = createTheme({
   status: {
     danger: '#e53e3e',
   },
@@ -103,6 +104,7 @@ function App() {
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/publish' component={PublishAd} />
               <Route exact path='/ad/:id' component={Ad} />
+              <Route exact path='/rent/:id' component={RentAdPage} />
             </Switch>
           </main>
         </Router>
