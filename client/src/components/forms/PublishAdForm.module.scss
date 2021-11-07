@@ -1,0 +1,12 @@
+.img_section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  div {
+    margin-right: 2em;
+  }
+  //   gap: 2em;
+  .preview_img_publish_ad {
+    max-width: 15em;
+  }
+}
