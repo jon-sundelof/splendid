@@ -5,9 +5,6 @@ import TargetedAd from '../components/ads/TargetedAd';
 
 const Ad = () => {
   const param: any = useParams();
-  useEffect(() => {
-    console.log(param.id);
-  }, []);
   return (
     <main className='single_ad_page_container'>
       <TargetedAd id={param.id} />
