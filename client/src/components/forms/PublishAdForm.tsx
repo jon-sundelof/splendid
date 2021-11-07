@@ -18,6 +18,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import Button from '@mui/material/Button';
+import styles from './PublishAdForm.module.scss';
 // import { Button } from '@material-ui/core';
 
 interface State {
@@ -63,6 +64,7 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
       threeDayPrice,
       weekPrice,
       productValue,
+      pic,
       pickup,
       addresses,
       delivery,
@@ -73,12 +75,27 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
       title,
       desc,
       price: [dayPrice, threeDayPrice, weekPrice],
+      pic,
       productValue,
       pickup,
       addresses,
       delivery,
       terms,
     };
+    if (
+      !category ||
+      !title ||
+      !desc ||
+      !dayPrice ||
+      !threeDayPrice ||
+      !weekPrice ||
+      !productValue ||
+      !pic ||
+      !terms
+    ) {
+      alert('Please fill out all required fields');
+      return;
+    }
     saveAdData(valuesToSend);
     handleNext();
   };
@@ -251,24 +268,29 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
         <Grid item xs={6}>
           <TextField id='standard-basic' label='Address +' variant='standard' />
         </Grid>
+        <Grid className={styles.img_section} item xs={10}>
+          <div>
+            <label>2. Upload image</label>
+            <label htmlFor='icon-button-file'>
+              <Input
+                accept='image/*'
+                id='icon-button-file'
+                type='file'
+                onChange={(e) => onFileChange(e)}
+              />
+              <IconButton
+                color='primary'
+                aria-label='upload picture'
+                component='span'
+              >
+                <PhotoCamera />
+              </IconButton>
+            </label>
+          </div>
+          <img className={styles.preview_img_publish_ad} src={values.pic} />
+        </Grid>
         <Grid item xs={12}>
-          <label>2. Upload image</label>
-          <label htmlFor='icon-button-file'>
-            <Input
-              accept='image/*'
-              id='icon-button-file'
-              type='file'
-              onChange={(e) => onFileChange(e)}
-            />
-            <IconButton
-              color='primary'
-              aria-label='upload picture'
-              component='span'
-            >
-              <PhotoCamera />
-            </IconButton>
-          </label>
-          <img src={values.pic} />
+          <hr />
         </Grid>
         <Grid item xs={12} md={6}>
           <FormControl fullWidth sx={{ m: 1 }}>
@@ -295,7 +317,7 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
             />
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/*     <Grid item xs={12} sm={6}>
           <FormControlLabel
             name='iAgree'
             control={
@@ -307,7 +329,7 @@ const PublishAdForm = ({ saveAdData, handleNext }: any) => {
             }
             label='I agree to the terms of service'
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
