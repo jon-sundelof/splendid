@@ -8,17 +8,17 @@ import Menu from '@mui/material/Menu';
 
 import styles from './CategoriesList.module.scss';
 
-const CategoriesList = ({ setCategory, values }: any) => {
+const CategoriesList = ({ setCategory, values, setCategoryDiscover }: any) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
   const open = Boolean(anchorEl);
   const options = [
-    'Default',
-    'Fritid och Hobby',
-    'Verktyg',
-    'Fest och Party',
-    'Fordon',
-    'Elektronik',
+    'All items',
+    'Leisure och Hobby',
+    'Tools',
+    'Party items',
+    'Vehicle',
+    'Electronics',
   ];
 
   const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,7 +31,12 @@ const CategoriesList = ({ setCategory, values }: any) => {
   ) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-    setCategory({ ...values, category: options[index] });
+    if (setCategoryDiscover) {
+      setCategoryDiscover(options[index]);
+    }
+    if (values && options) {
+      setCategory({ ...values, category: options[index] });
+    }
   };
 
   const handleClose = () => {
