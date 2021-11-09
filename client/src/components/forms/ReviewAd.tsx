@@ -24,9 +24,9 @@ const ReviewAd = ({
     <>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <div
-          style={{ width: '100vw', display: 'flex', justifyContent: 'center' }}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
         >
-          <TargetedAd />
+          <TargetedAd reviwAdpage={true} />
         </div>
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
