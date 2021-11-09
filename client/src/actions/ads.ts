@@ -19,6 +19,7 @@ export const getAds = () => async (dispatch: any) => {
   } catch (err) {}
 };
 export const getTargetedAd = (id: string) => async (dispatch: any) => {
+  console.log('asda');
   try {
     const res = await axios.get(`/api/ads/${id}`);
 
