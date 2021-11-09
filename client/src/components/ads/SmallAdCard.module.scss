@@ -1,0 +1,18 @@
+@use '../../styles/variables' as var;
+.small_ad_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: var.$card_box_shadow;
+  padding: 0.35em;
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+  }
+  img {
+    max-width: 10em;
+  }
+}
