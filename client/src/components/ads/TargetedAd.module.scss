@@ -18,6 +18,9 @@
       border-radius: 50%;
       width: 3em;
     }
+    div {
+      align-items: center;
+    }
   }
   .category {
     align-self: end;
@@ -47,7 +50,8 @@
     }
   }
   .img_targeted_ad {
-    width: 100%;
+    // max-width: 60%;
+    max-height: 10em;
     /*     max-width: 950px;
     height: auto;
     max-height: 450px; */

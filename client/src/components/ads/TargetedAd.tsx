@@ -7,10 +7,9 @@ import targetedAd from '../../reducers/targetedAd';
 import styles from './TargetedAd.module.scss';
 import Button from '@mui/material/Button';
 
-const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
+const TargetedAd = ({ getTargetedAd, ad, loading, id, reviwAdpage }: any) => {
   useEffect(() => {
     getTargetedAd(id);
-    console.log(loading);
   }, [getTargetedAd]);
   return (
     <>
@@ -29,11 +28,9 @@ const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
                   <img src={ad.avatar} />
                 </div>
               </div>
-
               <p className={ad.desc_container}>{ad.desc}</p>
               <hr />
               <span className={styles.category}>{ad.category}</span>
-
               <div className={styles.ad_prices}>
                 <span className={styles.prices_header}>Prices</span>
                 <div>
@@ -49,7 +46,7 @@ const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
                   <span>{ad.price[2]} $</span>
                 </div>
               </div>
-              <Button variant='contained'>Rent Me</Button>
+              {!reviwAdpage ? <Button variant='contained'>Rent Me</Button> : ''}
             </section>
           </article>
         </>
