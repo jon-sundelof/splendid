@@ -24,7 +24,10 @@ const TargetedAd = ({ getTargetedAd, ad, loading, id }: any) => {
                   <h2>{ad.title}</h2>
                   <span>{ad.price[0]} $/day</span>
                 </div>
-                <img src={ad.avatar} />
+                <div>
+                  <span>{ad.name}</span>
+                  <img src={ad.avatar} />
+                </div>
               </div>
 
               <p className={ad.desc_container}>{ad.desc}</p>
