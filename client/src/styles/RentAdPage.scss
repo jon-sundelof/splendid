@@ -1,0 +1,22 @@
+@use './variables' as var;
+
+.rent_ad_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 2em;
+  gap: 1em;
+
+  .calender_section_container {
+    border: 1px solid lightgrey;
+  }
+
+  .send_req_btn {
+    background: var.$primary;
+  }
+  h2 {
+    // color: var.$text_color;
+    color: var.$secondary;
+  }
+}
