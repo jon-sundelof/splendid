@@ -14,7 +14,7 @@ const CategoriesList = ({ setCategory, values, setCategoryDiscover }: any) => {
   const open = Boolean(anchorEl);
   const options = [
     'All items',
-    'Leisure och Hobby',
+    'Leisure & Hobby',
     'Tools',
     'Party items',
     'Vehicle',
