@@ -47,7 +47,7 @@ router.post(
         terms: req.body.terms,
         productValue: req.body.productValue,
         timeperiod: req.body.timeperiod,
-        name: user.name,
+        name: user.firstName,
         avatar: user.avatar,
         user: req.user.id,
       });
