@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { getTargetedAd } from '../../actions/ads';
 import targetedAd from '../../reducers/targetedAd';
@@ -8,9 +8,14 @@ import styles from './TargetedAd.module.scss';
 import Button from '@mui/material/Button';
 
 const TargetedAd = ({ getTargetedAd, ad, loading, id, reviwAdpage }: any) => {
+  const history = useHistory();
   useEffect(() => {
     getTargetedAd(id);
   }, [getTargetedAd]);
+
+  const handleRentClick = () => {
+    history.push(`/rent/${id}`);
+  };
   return (
     <>
       {loading ? null : (
@@ -46,7 +51,13 @@ const TargetedAd = ({ getTargetedAd, ad, loading, id, reviwAdpage }: any) => {
                   <span>{ad.price[2]} $</span>
                 </div>
               </div>
-              {!reviwAdpage ? <Button variant='contained'>Rent Me</Button> : ''}
+              {!reviwAdpage ? (
+                <Button variant='contained' onClick={handleRentClick}>
+                  Rent Me
+                </Button>
+              ) : (
+                ''
+              )}
             </section>
           </article>
         </>

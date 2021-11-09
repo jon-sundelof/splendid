@@ -1,6 +1,7 @@
 import React from 'react';
 import TargetedAd from '../ads/TargetedAd';
 
+import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { postAd } from '../../actions/ads';
 
@@ -16,8 +17,11 @@ const ReviewAd = ({
   postAd,
   values,
 }: any) => {
+  const history = useHistory();
   const publishAd = () => {
     postAd(values);
+    alert('Success! Ad is now LIVE :)');
+    history.push('/');
   };
 
   return (
